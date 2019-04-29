@@ -2,6 +2,10 @@
 <p>Pancake is a tool used in terminal for some convenience.</p>
 
 <h2>Installation</h1>
- <p>run ```gcc pancake.c -o pancake``` and ```./pancake``` 
- in your terminal, a random password should then be printed.</p>
- <p>Temporarily, generating random passwords is only supported. To use it with parameters and more other simple tools will be in Pancake.</p>
+<p>move to /path/to/pancake and run this in your terminal: </p>
+
+    make
+    ./pancake
+
+<p> A random password should then be printed.</p>
+<p>Temporarily, generating random passwords is only supported but parameters and more other simple tools will be in Pancake.</p>
