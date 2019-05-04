@@ -2,9 +2,13 @@
 #include "string.h"
 #include "stdlib.h"
 #include "time.h"
+#include "./include/config.h"
+
+static unsigned long int rand_seed = _RAND_SEED_VALUE;
 
 int password_random();
-int rand_int(int lower, int upper, int count);
+int rand_int(int lower, int upper);
+void seed_rand(long unsigned int seed);
 
 int main()
 {
@@ -14,19 +18,16 @@ int main()
 
 int password_random()
 {
-    char martrix[255];
-    int password_lenth = 19;
+    char dictionary[255];
     char password[255];
-    int i, rand_num, martrix_lenth;
-    time_t t;
+    int i, rand_num, dictionary_lenth, password_lenth = _DEFAULT_PASSWORD_LENGTH;
 
-    srand((unsigned)time(&t));
-    strcpy(martrix, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    martrix_lenth = strlen(martrix);
+    strcpy(dictionary, _RANDOM_PASSWORD_DICTIONARY);
+    dictionary_lenth = strlen(dictionary);
     for (i = 0; i < password_lenth; i++)
     {
-        rand_num = rand_int(0, martrix_lenth - 1, 1);
-        password[i] = martrix[rand_num];
+        rand_num = rand_int(0, dictionary_lenth - 1);
+        password[i] = dictionary[rand_num];
     }
 
     printf("%s\r\n", password);
@@ -34,21 +35,20 @@ int password_random()
     return 0;
 }
 
-// src: https://www.geeksforgeeks.org/generating-random-number-range-c/
-int rand_int(int lower, int upper, int count)
+int rand_int(int lower, int upper)
 {
-    int i, j, num, _rand_num = 1;
+    int i, j, num;
+    long unsigned int rand_num;
+    long func_seed;
 
-    for (i = 0; i < count; i++)
-    {
-        srand(time(NULL));
-        for (j = 0; j < i; j++)
-        {
-            _rand_num += rand() % (upper - lower + 1) + lower;
-        }
-        
-        num = rand() % (upper - lower + 1) + lower;
-        printf("%d\r\n", _rand_num);
-    }
+    func_seed = clock();
+    rand_num = func_seed * rand_seed + func_seed * (func_seed & _FUNC_SEED_MASK) - rand_seed % (rand_seed & _RAND_SEED_MASK);
+    seed_rand(rand_num);
+
+    num = rand_num % (upper - lower + 1) + lower;
     return num;
+}
+void seed_rand(long unsigned int seed)
+{
+    rand_seed = seed;
 }

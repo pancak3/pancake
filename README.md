@@ -4,6 +4,7 @@
 <h2>Installation</h1>
 <p>move to /path/to/pancake and run this in your terminal: </p>
 
+    ./configure
     make
     ./pancake
 
