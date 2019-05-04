@@ -8,5 +8,6 @@
     make
     ./pancake
 
-<p> A random password should then be printed.</p>
+    qnKdO5URtnvOEi6GaqXeGlM
+
 <p>Temporarily, generating random passwords is only supported but parameters and more other simple tools will be in Pancake.</p>
