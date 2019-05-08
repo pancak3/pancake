@@ -98,7 +98,7 @@ long unsigned int pancake_rand()
 {
     long unsigned int rand_num, noise_b, noise_c, noise_m, func_seed;
 
-    func_seed = clock() * (G_RAND_SEED - 1);
+    func_seed = clock() + G_RAND_SEED ;
     func_seed *= func_seed;
     rand_num = ((_NOISE_B * func_seed + _NOISE_C) % _NOISE_M);
     seed_rand(rand_num);
