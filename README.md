@@ -7,5 +7,6 @@
     gcc pancake.c -o pancake
     ./pancake
 
-<p> A random password should then be printed.</p>
+    cJpJoQg9LksnZVZrKtIRzx9
+
 <p>Temporarily, generating random passwords is only supported but parameters and more other simple tools will be in Pancake.</p>
